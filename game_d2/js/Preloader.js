@@ -1,5 +1,5 @@
 "use strict";
-
+/** @param {Phaser.Game} game*/
 GameStates.makePreloader = function( game ) {
 
 	var background = null;
@@ -23,11 +23,21 @@ GameStates.makePreloader = function( game ) {
     
             //	Here we load the rest of the assets our game needs.
             //	As this is just a Project Template I've not provided these assets, swap them for your own.
-            game.load.image('titlePage', 'assets/title.jpg');
+            game.load.image('titlePage', 'assets/background2.png');
             game.load.atlas('playButton', 'assets/play_button.png', 'assets/play_button.json');
-            game.load.audio('titleMusic', ['assets/Poppers and Prosecco.mp3']);
-            //	+ lots of other required assets here
-            game.load.image( 'logo', 'assets/phaser.png' );
+            game.load.audio('titleMusic', ['assets/OldCountry.mp3']);
+            // Load in-game assets
+            //	load eggs
+            game.load.image( 'egg', 'assets/egg.png' );
+            game.load.image( 'egg2', 'assets/egg2.png' );
+            game.load.image( 'egg3', 'assets/egg3.png' );
+            // load chickens
+            game.load.image( 'chicken', 'assets/chicken.png' );
+            game.load.image( 'chicken2', 'assets/chicken2.png' );
+            // load basket
+            game.load.image('basket3', 'assets/basket3.png');
+            // load background
+            game.load.image('background3', 'assets/background3.png')
         },
     
         create: function () {

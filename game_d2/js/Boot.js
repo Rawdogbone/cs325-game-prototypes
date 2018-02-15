@@ -1,8 +1,9 @@
 "use strict";
 
 var GameStates = {};
-
+/** @param {Phaser.Game} game*/
 GameStates.makeBoot = function( game ) {
+    
     return {
         init: function () {
     
@@ -15,7 +16,7 @@ GameStates.makeBoot = function( game ) {
             if (game.device.desktop)
             {
                 //  If you have any desktop specific settings, they can go in here
-                game.scale.pageAlignHorizontally = true;
+                //game.scale.pageAlignHorizontally = false;
             }
             else
             {
@@ -24,7 +25,7 @@ GameStates.makeBoot = function( game ) {
                 game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
                 game.scale.setMinMax(480, 260, 1024, 768);
                 game.scale.forceLandscape = true;
-                game.scale.pageAlignHorizontally = true;
+                game.scale.pageAlignHorizontally = false;
             }
     
         },
@@ -32,7 +33,7 @@ GameStates.makeBoot = function( game ) {
         preload: function () {
     
             //  Here we load the assets required for our Preloader state (in this case a background and a loading bar)
-            game.load.image('preloaderBackground', 'assets/preloader_background.jpg');
+            game.load.image('preloaderBackground', 'assets/background2.png');
             game.load.image('preloaderBar', 'assets/preloader_bar.png');
     
         },

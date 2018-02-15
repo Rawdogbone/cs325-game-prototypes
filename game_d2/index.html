@@ -10,6 +10,7 @@
 	<script src="js/Preloader.js"></script>
 	<script src="js/MainMenu.js"></script>
 	<script src="js/Game.js"></script>
+	<script src="js/End.js"></script>
 	<!-- main.js must come last since it references the other ones. -->
 	<script src="js/main.js"></script>
 
@@ -29,79 +30,97 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Game 2</h2>
+<h2>Egg Drop!</h2>
 
 <ul>
 <li><strong>Originality:</strong>
 What is original about your game?
+- This is a very cute game that implements solid gameplay in a comforting atmosphere. Fast-paced slider keeps you on your toes as well.
 </li>
 
 <li><strong>Technical Merit:</strong>
 What is interesting about your game technology?
+- Uses all sorts of phaser arcade things such as emitters, groups, and timers.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
 What did you learn from this prototype?
+- Game Development is a pain the @$$.
 What was the easiest or hardest part of making it?
+- Easiest: Art and design.
+- Hardest: Spawning multiple sprites sequentially inside of the create function.
 </li>
 
 <li><strong>Prototype Assets:</strong>
 Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Loading screen: self-made</li>
-<li>Puppy image: self-made</li>
-<li>Button: Phaser example <a href="https://phaser.io/examples/v2/buttons/action-on-click">Action On Click</a></li>
-<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
-<li>Music: "Poppers and Prosecco" Kevin MacLeod (<a href="incompetech.com">incompetech.com</a>). Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons: By Attribution 3.0 License</a></li>
+<li>Loading screen: Yotam's</li>
+<li>Background: <a href="http://clipart-library.com/clipart/qTB7X49T5.htm">Wallpaper</a></li>
+<li>Egg picture: <a href="http://www.pngpix.com/download/egg-png-vector-transparent-image">Egg Picture</a></li>
+<li>Basket: <a href="http://clipart-library.com/clipart/270084.htm">Pretty Basket</a></li>
+<li>Music: "Old Country Farm" -Darren Curtis  (<a href="https://www.youtube.com/watch?v=HPt2ngfRQ8I">youtube link</a>). Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons: By Attribution 3.0 License</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
 Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
 <ul>
-<li>The code for this example is adapted from the <a href="https://github.com/photonstorm/phaser/tree/v2.6.2/resources/Project%20Templates/Basic">Phaser Basic Project Template</a></li>
+<li>- The code for this example is adapted from the <a href="https://phaser.io/examples/v2/arcade-physics/multiball">Phaser Multiball Template</a></li>
 </ul>
 </li>
 
 <li><strong>High Concept:</strong>
 A one-sentence summary of your game.
+- You're a farmer, catch as many eggs in your basket as possible.
 </li>
 
 <li><strong>Theme:</strong>
 State which of the Storymatic themes you used.
+- Chicken
 </li>
 
 <li><strong>Mandated Variety:</strong>
 State which input, randomness, genre, and play style you used in this prototype.
+- Keyboard input, farm fantasy, gravity-catching round em' up.
 </li>
 
 <li><strong>Prototype Goal:</strong>
 What game mechanic is this prototype evaluating?
+- Gravity and collsion on sprites in the game, as well as multi-menu states.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
 What experience do you want players to have when playing your game?
+- Chill af, you're catching eggs in a basket homie.
 </li>
 
 <li><strong>Gameplay:</strong>
 A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+- In this game, movements are limited, you can press the 'Enter key' on occasion to progress from game states, other than that
+you simply use the left or right key to move side to side and catch egg. The game runs a a sprite that can move horizontally along the x axis. This basket
+collides with eggs and if you collide with the falling eggs to get a point. You want to get as many points as possible within the 30 sec. timeframe.
 </li>
 
 <li><strong>Strategies:</strong>
 What player strategies do you expect will be effective at playing this game?
+- Maybe stay in one place and let the eggs fall or bouce back and forth from the left side to the right side.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
 A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
 How will the dramatic tension interact with the gameplay tension?
+- You play as a farmer, a chicken farmer. Your chickens are about to hatch and you need to get as many eggs as possible to
+sell at the market to afford bills. The music helps you feel as if you are a farmer.
 </li>
 
 <li><strong>Target Audience:</strong>
 A single sentence that describes the demographic you're trying to reach.
+- Kids.
 </li>
 
 <li><strong>Play Time:</strong>
 How long does your game take to play?
+- 30 seconds. Play to your heart's content!
 </li>
 
 </ul>
