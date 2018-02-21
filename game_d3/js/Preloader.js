@@ -27,13 +27,17 @@ GameStates.makePreloader = function( game ) {
             game.load.audio('titleMusic', ['assets/table4four.mp3']);
             // Load in-game assets
             game.load.image('wkey', 'assets/wkey.png');
-            game.load.image('skey', 'assets/skey.png');
             game.load.image('akey', 'assets/akey.png');
+            game.load.image('skey', 'assets/skey.png');
             game.load.image('dkey', 'assets/dkey.png');
             game.load.image('pianoPlayer', 'assets/pianoPlayer.png');
             game.load.image('rose', 'assets/rose.png');
             game.load.image('tomato', 'assets/tomato.png');
-            game.load.image('theater3', "assets/theater3.png")
+            game.load.image('theater3', 'assets/theater3.png')
+            game.load.audio('wsound', ['assets/a3.mp3']);
+            game.load.audio('ssound', ['assets/c4.mp3']);
+            game.load.audio('asound', ['assets/d4.mp3']);
+            game.load.audio('dsound', ['assets/f3.mp3']);
         },
     
         create: function () {
