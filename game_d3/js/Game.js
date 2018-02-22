@@ -173,7 +173,7 @@ GameStates.makeGame = function( game, shared ) {
                 tomato.scale.setTo(0.1);
                 tomato.exists = true;
                 tomato.reset(game.world.randomX,700);
-                game.physics.arcade.moveToObject(tomato,player,120);
+                game.physics.arcade.moveToObject(tomato,player,240);
                 tomatoGo = 0;
             }
         }
@@ -259,7 +259,7 @@ GameStates.makeGame = function( game, shared ) {
 
             // begin timer
             timer = game.time.create(false);
-            timer.loop(game.rnd.integerInRange(1000,2000),showletter, this);
+            timer.loop(game.rnd.integerInRange(950,1250),showletter, this);
             timer.start();
             
 	        
