@@ -35,7 +35,7 @@ GameStates.makeEnd = function( game, shared ) {
             // MENU TEXT
             // Title Text
             var style = { font: "bold 45px Consolas", fill: "#fff", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Sing It Off!", style );
+            var text = game.add.text( game.world.centerX, 15, "Play It Off!", style );
             text.anchor.setTo( 0.5, 0.0 );
             text.setShadow(3,3,'rgba(0,0,0,0,.5)',2);
             // Rules Text
@@ -69,7 +69,7 @@ GameStates.makeEnd = function( game, shared ) {
 	        emitter.maxRotation = 0;
 
             emitter.start(false,10000,5,0);
-            
+
             // play music
             music = game.add.audio('titleMusic');
             music.loop = true;
@@ -79,6 +79,7 @@ GameStates.makeEnd = function( game, shared ) {
     
         update: function () {
             if (enterKey2.isDown){
+                music.stop();
                 mainMenu();
             }
         }

@@ -37,7 +37,7 @@ GameStates.makeMainMenu = function( game, shared ) {
             // MENU TEXT
             // Title Text
             var style = { font: "bold 45px Consolas", fill: "#fff", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Sing It off!", style );
+            var text = game.add.text( game.world.centerX, 15, "Play It off!", style );
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
             // Rules

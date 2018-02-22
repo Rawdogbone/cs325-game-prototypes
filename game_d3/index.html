@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>Phaser Basic Project Template</title>
+	<title>Play It Off - Joseph Bessette</title>
 	<script src="js/phaser.min.js"></script>
 	<!-- Boot.js must come first since it creates the BasicGame object
 	that stores all the states. -->
@@ -30,97 +30,101 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Egg Drop!</h2>
+<h2>Play It Off!</h2>
 
 <ul>
 <li><strong>Originality:</strong>
 What is original about your game?
-- This is a very cute game that implements solid gameplay in a comforting atmosphere. Fast-paced slider keeps you on your toes as well.
+- This game combines the mechanics of pattern matching, while simultaneously catching and dodging.
 </li>
 
 <li><strong>Technical Merit:</strong>
 What is interesting about your game technology?
-- Uses all sorts of phaser arcade things such as emitters, groups, and timers.
+- Uses all sorts of phaser arcade things such as emitters, groups, and timers, collisions. I also combine multiple game mechanics.
 </li>
 
 <li><strong>Prototype Postmortem:</strong>
 What did you learn from this prototype?
-- Game Development is a pain the @$$.
+- A game that may seem simple to play at first can be really hard so slowing it down helps a lot.
 What was the easiest or hardest part of making it?
 - Easiest: Art and design.
-- Hardest: Spawning multiple sprites sequentially inside of the create function.
+- Hardest: Correctly managing user input and showing corresponding input as an interaction in the game.
 </li>
 
 <li><strong>Prototype Assets:</strong>
 Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
 <ul>
-<li>Loading screen: Yotam's</li>
-<li>Background: <a href="http://clipart-library.com/clipart/qTB7X49T5.htm">Wallpaper</a></li>
-<li>Egg picture: <a href="http://www.pngpix.com/download/egg-png-vector-transparent-image">Egg Picture</a></li>
-<li>Basket: <a href="http://clipart-library.com/clipart/270084.htm">Pretty Basket</a></li>
-<li>Music: "Old Country Farm" -Darren Curtis  (<a href="https://www.youtube.com/watch?v=HPt2ngfRQ8I">youtube link</a>). Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons: By Attribution 3.0 License</a></li>
+<li>Loading Bar: Self-Made</li>
+<li>Sound effects: Self-Made</li>
+<li>Background: <a href="https://www.pinterest.com/pin/399131585702286735/">Wallpaper</a></li>
+<li>Harold's Stage: <a href="http://clipart-library.com/clipart/n1177909.htm">Theater</a></li>
+<li>Harold the Owl: <a href="https://pngtree.com/freepng/owl-playing-piano_3116139.html">Owl</a></li>
+<li>Tomato: <a href="http://www.clipartpanda.com/categories/tomato-clipart">Plump Tomato</a></li>
+<li>Rose: <a href="http://moziru.com/explore/Red%20Flower%20clipart%20comic/">Sweet Rose</a></li>
+<li>Keys: <a href="https://www.wpclipart.com/computer/keyboard_keys/letters/">Dem Keyz</a></li>
+<li>Music: "Table for Four" -CrusaderBeach  (<a href="https://www.youtube.com/watch?v=yUjjgixA8uE">youtube link</a>). Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons: By Attribution 3.0 License</a></li>
 </ul>
 </li>
 
 <li><strong>Prototype Closest Other Game:</strong>
 Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
 <ul>
-<li>- The code for this example is adapted from the <a href="https://phaser.io/examples/v2/arcade-physics/multiball">Phaser Multiball Template</a></li>
+<li>- This game was inspired by guitar hero, but all game code is mine. However, some Phaser examples helped during implementation. NOTE: code to manage input from affecting browser window is from StackOverflow. </a></li>
 </ul>
 </li>
 
 <li><strong>High Concept:</strong>
 A one-sentence summary of your game.
-- You're a farmer, catch as many eggs in your basket as possible.
+- Perform your piano piece and receive the love or the hate of your audience!
 </li>
 
 <li><strong>Theme:</strong>
 State which of the Storymatic themes you used.
-- Chicken
+- Caught! and Talent Show
 </li>
 
 <li><strong>Mandated Variety:</strong>
 State which input, randomness, genre, and play style you used in this prototype.
-- Keyboard input, farm fantasy, gravity-catching round em' up.
+- Keyboard input, musical fantasy, pattern matching and catch/dodge movements
 </li>
 
 <li><strong>Prototype Goal:</strong>
 What game mechanic is this prototype evaluating?
-- Gravity and collsion on sprites in the game, as well as multi-menu states.
+- Pattern matching and collisions of sprites.
 </li>
 
 <li><strong>Player Experience Goals:</strong>
 What experience do you want players to have when playing your game?
-- Chill af, you're catching eggs in a basket homie.
+- More intense than nothing, if you mess up early, you could be fudged.
 </li>
 
 <li><strong>Gameplay:</strong>
 A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
-- In this game, movements are limited, you can press the 'Enter key' on occasion to progress from game states, other than that
-you simply use the left or right key to move side to side and catch egg. The game runs a a sprite that can move horizontally along the x axis. This basket
-collides with eggs and if you collide with the falling eggs to get a point. You want to get as many points as possible within the 30 sec. timeframe.
+- The movements in game are all on the keyboard. The arrow keys are used to move the player around the map to collect/dodge specific objects. You want to catch roses
+and dodge tomatoes. Roses and tomatoes are used as bonuses to two meters, Love and Hate. The goal of this game is ro raise your love meter to 100 before your hate meter does.
+You gain your love meter primarily however by pressing the right notes you see on the screen using the WASD keys. If you get a not wrong, you get a tomato thrown at you which
+you have to dodge. If you don't, your hate meter goes up even faster. Get a streak of notes, you get a rose thrown at you which is a further increase in your love meter if you go and grab it.
 </li>
 
 <li><strong>Strategies:</strong>
 What player strategies do you expect will be effective at playing this game?
-- Maybe stay in one place and let the eggs fall or bouce back and forth from the left side to the right side.
+- Potentially avoiding the roses alltogether as this could increase the odds of you messing up a note since you would be distracted.
 </li>
 
 <li><strong>Story/Setting/Premise:</strong>
 A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
 How will the dramatic tension interact with the gameplay tension?
-- You play as a farmer, a chicken farmer. Your chickens are about to hatch and you need to get as many eggs as possible to
-sell at the market to afford bills. The music helps you feel as if you are a farmer.
+- You play as Harold the Owl, he is performing his masterpiece at the community talent show. Harold is hoping to win the audience over for his performance. But he fears he might fail. Don't let him!
 </li>
 
 <li><strong>Target Audience:</strong>
 A single sentence that describes the demographic you're trying to reach.
-- Kids.
+- Kids and people who are bored.
 </li>
 
 <li><strong>Play Time:</strong>
 How long does your game take to play?
-- 30 seconds. Play to your heart's content!
+- 1-2 minutes.
 </li>
 
 </ul>
