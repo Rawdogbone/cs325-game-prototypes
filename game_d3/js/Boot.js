@@ -15,10 +15,12 @@ GameStates.makeBoot = function( game ) {
     
             if (game.device.desktop)
             {
+                
                 //  If you have any desktop specific settings, they can go in here
-                game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-                game.scale.pageAlignHorizontally = true;
-                game.scale.pageAlignVertically = true;
+                //game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+                //game.scale.pageAlignHorizontally = true;
+                //game.scale.pageAlignVertically = true;
+                
                 
             }
             else

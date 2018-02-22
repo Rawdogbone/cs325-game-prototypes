@@ -6,6 +6,7 @@ GameStates.makeMainMenu = function( game, shared ) {
 	var music = null;
     var playButton = null;
     var enterKey = null;
+    var box = null;
     
     function startGame(pointer) {
 
@@ -19,26 +20,32 @@ GameStates.makeMainMenu = function( game, shared ) {
     
     return {
     create: function () {
+            // play music
             music = game.add.audio('titleMusic');
             music.loop = true;
             music.play();
     
             game.add.sprite(0, 0, 'titlePage');
+            box = game.add.sprite(0,140,'blackBox');
+            box.alpha = 100;
+            box.scale.setTo(5, 1.15);
+
 
             // add enter key
             enterKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
-            
-
             // MENU TEXT
             // Title Text
             var style = { font: "bold 45px Consolas", fill: "#fff", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Sing it off!", style );
+            var text = game.add.text( game.world.centerX, 15, "Sing It off!", style );
             text.anchor.setTo( 0.5, 0.0 );
+            game.world.bringToTop(text);
             // Rules
-            var rules = "STORY:\nYour Goal.\n-Raise your love meter to 100 to win over the crowd.\nHow? \n-Press the corresponding WASD key you see on screen to raise the meter.\nSounds easy, whats the catch? \n-If you press the wrong key, the crowd will boo growing\nyour hate meter and throw a tomato at you. If this tomato hits you, your hate meter will go\neven more. If your hate meter reaches 100 before your love meter, you lose.\nYikes, help me out.\n -When you get a streak of notes correct, the crowd will cheer and throw a rose on the stage \nwhich if you get before it disappears will help boost your love meter.\n How do I get roses and dodge tomatoes?\n-Use the arrow keys\nLet's Play.\n\n-Press 'Enter' to begin";
-            var text3 = game.add.text(0, 100, rules, {font: "15px Consolas", fill: '#fff', align: "center"});
+            var rules = "STORY:\nYour Goal.\n-Raise your love meter to 100 to win over the crowd.\nHow? \n-Press the corresponding WASD key you see on screen to raise the meter.\nSounds easy, whats the catch? \n-If you press the wrong key, the crowd will boo which grows\nyour hate meter and a tomato will be thrown at you. \nIf this tomato hits you, your hate meter will rise\neven more. If your hate meter reaches 100 before your love meter, you lose.\nYikes, help me out.\n -When you get a streak of notes correct, the crowd will cheer and throw a rose on the stage. \nPicking up this rose will further increase your love meter.\n How do I get roses and dodge tomatoes?\n-Use the arrow keys\nLet's Play.\n\n\n\n-Press 'Enter' to begin";
+            var text3 = game.add.text(0, 50, rules, {font: "15px Consolas", fill: '#fff', align: "center"});
             text3.setTextBounds(0, 100, 800, 100);
+            game.world.bringToTop(text3);
+
 
             // PARTICLE EFFECTS
             // tomatoes

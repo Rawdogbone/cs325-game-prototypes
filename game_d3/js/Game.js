@@ -24,6 +24,20 @@ GameStates.makeGame = function( game, shared ) {
     var score2 = 0;
     var scoreString2 = '';
     var scoreText2;
+    var roses;
+    var tomatoes;
+    var streak = 0;
+    var tomatoGo = 0;
+    var scored = null;
+    var wsound = null;
+    var ssound = null;
+    var asound = null;
+    var dsound = null;
+    var yaysound = null;
+    var boosound = null;
+    var pop = null;
+    var splat = null;
+    var bad = null;
     
 
     // fix locked arrow keys
@@ -51,6 +65,13 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function showletter(){
+        // if user hasn't pressed anything, throw tomato
+        if(!scored){
+            streak = 0; // reset streak
+            tomatoGo = 1;
+            score2+=5;
+            scoreText2.setText(scoreString2 + score2);
+        }
         //clear letters
         wkey.alpha = 0;
         skey.alpha = 0;
@@ -81,19 +102,95 @@ GameStates.makeGame = function( game, shared ) {
         else{
             dkey.alpha = 100;
         }
+        scored = false;
     }
 
     function processLetter(junk, num){
-        
-        console.log(num + " : " + lastDisplayKey);
+        scored = true;
+        // if user pressed correct key
         if(num == lastDisplayKey){
+            // play corresponding sound
+            if(num == 0){
+                wsound.play();
+                wkey.alpha = 0;
+            }
+            else if(num == 1){
+                asound.play();
+                akey.alpha = 0;
+            }
+            else if(num == 2){
+                ssound.play();
+                skey.alpha = 0;
+            }
+            else{
+                dsound.play();
+                dkey.alpha = 0;
+            }
             score++;
             scoreText.setText(scoreString + score);
+            streak++;
         }
         else{
-            score2++;
+            bad.play();
+            wkey.alpha = 0;
+            skey.alpha = 0;
+            akey.alpha = 0;
+            dkey.alpha = 0;
+            streak = 0; // reset streak
+            tomatoGo = 1;
+            score2+=5;
             scoreText2.setText(scoreString2 + score2);
+
         }
+    }
+
+    function throwRose(){
+        var luck = game.rnd.integerInRange(0,1);
+        var rose = roses.getFirstExists(false);
+        if(streak == 3){
+            if(rose){
+                // if three correct hits in a row, toss a rose
+                if(luck == 1){ // 1 in three chance per streak
+                    yaysound.play();
+                    rose.frame = game.rnd.integerInRange(0,6);
+                    rose.scale.setTo(0.1);
+                    rose.exists = true;
+                    rose.reset(game.world.randomX,700);
+                    game.add.tween(rose).to({y:game.rnd.integerInRange(300,400)}, 1000, Phaser.Easing.Default, true); // tween
+                    rose.body.bounce.y = 0.8;
+                }
+                streak = 0; // reset streak
+            }
+        }
+    }
+
+    function throwTomato(){
+        var tomato = tomatoes.getFirstExists(false);
+        if(tomato){
+            if(tomatoGo == 1){
+                boosound.play();
+                tomato.frame = game.rnd.integerInRange(0,6);
+                tomato.scale.setTo(0.1);
+                tomato.exists = true;
+                tomato.reset(game.world.randomX,700);
+                game.physics.arcade.moveToObject(tomato,player,120);
+                tomatoGo = 0;
+            }
+        }
+    }
+
+    function pickUpRose(body1, body2){
+        pop.play();
+        body2.kill();
+        score+=10;
+        scoreText.setText(scoreString + score);
+    }
+
+    function getSplat(body1, body2){
+        splat.play();
+        body2.kill();
+        score2+=15;
+        scoreText2.setText(scoreString2 + score2);
     }
     
 
@@ -102,9 +199,11 @@ GameStates.makeGame = function( game, shared ) {
 
     }
 
-    function endGame(){
-        
-        game.state.start('End');
+    function endGame(num){
+        streak = 0;
+        score = 0;
+        score2 = 0;
+        game.state.start('End', true, false, num);
     }
     
     return {
@@ -113,6 +212,7 @@ GameStates.makeGame = function( game, shared ) {
         },
     
         create: function () {
+            scored = true; //dont deduct first letter
             game.physics.startSystem(Phaser.Physics.ARCADE);
 
             //load wallpaper
@@ -138,6 +238,7 @@ GameStates.makeGame = function( game, shared ) {
             game.physics.enable(player,Phaser.Physics.ARCADE);
             player.scale.set(0.1);
             player.body.collideWorldBounds = true;
+            player.body.immovable = true;
 
             // load keys
             wkey = game.add.sprite(200,150, 'wkey');
@@ -161,9 +262,7 @@ GameStates.makeGame = function( game, shared ) {
             timer.loop(game.rnd.integerInRange(1000,2000),showletter, this);
             timer.start();
             
-	        // initialize extra params
-            game.physics.arcade.enable(game.world, true);
-            cursors = game.input.keyboard.createCursorKeys();
+	        
 
             //add WASD keys
             wInput = game.input.keyboard.addKey(Phaser.Keyboard.W);
@@ -181,6 +280,33 @@ GameStates.makeGame = function( game, shared ) {
 
             scoreString2 = 'Hate Meter: ';
             scoreText2 = game.add.text(700, 10, scoreString2 + score2, { font: '15px Arial', fill: '#fff' });
+            
+            // spawn roses
+            roses = game.add.group();
+            roses.createMultiple(500, 'rose', 0,false);
+            game.time.events.loop(200,throwRose,this);
+
+            tomatoes = game.add.group();
+            tomatoes.createMultiple(500,'tomato', 0, false);
+            game.time.events.loop(200,throwTomato,this);
+
+
+            // initialize extra params
+            game.physics.arcade.enable(game.world, true);
+            cursors = game.input.keyboard.createCursorKeys();
+
+            //load music
+            wsound = game.add.audio('wsound');
+            asound = game.add.audio('asound');
+            ssound = game.add.audio('ssound');
+            dsound = game.add.audio('dsound');
+            yaysound = game.add.audio('yay');
+            boosound = game.add.audio('boo');
+            pop = game.add.audio('pop');
+            splat = game.add.audio('splat');
+            bad = game.add.audio('bad');
+            
+
         },
 
         update: function () {
@@ -206,7 +332,18 @@ GameStates.makeGame = function( game, shared ) {
             // introduce physics
             game.physics.arcade.collide(player, invisWall1, null, react, this);
             game.physics.arcade.collide(player, invisWall2, null, react2, this);
+            game.physics.arcade.collide(player,roses,null,pickUpRose,this);
+            game.physics.arcade.collide(player,tomatoes,null,getSplat,this);
+
+            // end game
+            if(score >= 100){
+                endGame(0);
+            }
+            else if(score2 >= 100){
+                endGame(1);
+            }
   
+            
         }
     };
 };

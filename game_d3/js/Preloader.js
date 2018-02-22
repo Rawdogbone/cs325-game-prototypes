@@ -38,6 +38,13 @@ GameStates.makePreloader = function( game ) {
             game.load.audio('ssound', ['assets/c4.mp3']);
             game.load.audio('asound', ['assets/d4.mp3']);
             game.load.audio('dsound', ['assets/f3.mp3']);
+            game.load.audio('yay', ['assets/yay.mp3']);
+            game.load.audio('boo', ['assets/boo.mp3']);
+            game.load.audio('pop', ['assets/pop.mp3']);
+            game.load.audio('splat', ['assets/splat.mp3']);
+            game.load.audio('bad', ['assets/bad note.mp3']);
+            game.load.image('blackBox', 'assets/blackbox.jpeg')
+            
         },
     
         create: function () {
@@ -60,10 +67,14 @@ GameStates.makePreloader = function( game ) {
             
             if (game.cache.isSoundDecoded('titleMusic') && ready == false)
             {
-                ready = true;
-                game.state.start('MainMenu');
+                if(game.cache.isSoundDecoded('wsound') && game.cache.isSoundDecoded('ssound') && game.cache.isSoundDecoded('asound') && game.cache.isSoundDecoded('dsound')){
+                    if(game.cache.isSoundDecoded('yay') && game.cache.isSoundDecoded('boo') && game.cache.isSoundDecoded('pop') && game.cache.isSoundDecoded('splat') && game.cache.isSoundDecoded('bad')){
+                        ready = true;
+                        game.state.start('MainMenu');
+                    }
+                    
+                }    
             }
-    
         }
     
     };
