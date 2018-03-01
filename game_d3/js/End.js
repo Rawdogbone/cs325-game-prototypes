@@ -34,10 +34,12 @@ GameStates.makeEnd = function( game, shared ) {
 
             // MENU TEXT
             // Title Text
-            var style = { font: "bold 45px Consolas", fill: "#fff", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Play It Off!", style );
+            // Title Text
+            var style = { font: "bold 45px Consolas", fill: "#000", align: "center" };
+            var text = game.add.text( game.world.centerX, 15, "Before it Melts!", style );
             text.anchor.setTo( 0.5, 0.0 );
-            text.setShadow(3,3,'rgba(0,0,0,0,.5)',2);
+            game.world.bringToTop(text);
+            text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // Rules Text
             var style2 = { font: "bold 30px Consolas", fill: "#fff", align: "center" };
             var text2 = game.add.text(400,300, gameOutcome, style2);
@@ -51,10 +53,7 @@ GameStates.makeEnd = function( game, shared ) {
             var emitter = game.add.emitter(game.world.centerX, -50 , 1000);
             emitter.width = game.world.width;
             if(temp == 0){
-                emitter.makeParticles('rose');
-            }
-            else{
-                emitter.makeParticles('tomato');
+                emitter.makeParticles('ice');
             }
             
             emitter.angle = 0;
