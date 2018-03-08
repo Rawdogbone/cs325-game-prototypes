@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Before it Melts - Joseph Bessette</title>
+	<script src="js/phaser.min.js"></script>
+	<!-- Boot.js must come first since it creates the BasicGame object
+	that stores all the states. -->
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Game.js"></script>
+	<script src="js/End.js"></script>
+	<script src="js/Rules.js"></script>
+	<!-- main.js must come last since it references the other ones. -->
+	<script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Before it Melts!</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+What is original about your game?
+- This game combines a fantasy beach aesthetic with gambling mechanics and time based events.
+</li>
+
+<li><strong>Technical Merit:</strong>
+What is interesting about your game technology?
+- Uses all sorts of phaser arcade things such as emitters, groups, timers, and collisions. I also introduce gambling functions.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+What did you learn from this prototype?
+- Gambling games are easy to understand, a pain to implement.
+What was the easiest or hardest part of making it?
+- Easiest: Art and design.
+- Hardest: Having ice cubes fall in a cup...
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>Loading bar and buttons: Self-Made</li>
+<li>Sound effects found on SoundBible: <a href="http://soundbible.com/free-sound-effects-1.html">Sounds</a></li>
+<li>Game Wallpaper <a href="http://clipart-library.com/summer-backgrounds-cliparts.html">Wallpaper 1</a></li>
+<li>Title Wallpaper: <a href="http://commonpence.co/beach-templates/">Wallpaper 2</a></li>
+<li>All symbols and other graphics: <a href="https://www.iconfinder.com">Symbols and Graphics</a></li>
+<li>Music: All music by Derek and Brandon Fiechter <a href="https://www.youtube.com/channel/UCjMZjGhrFq_4llVS_x2XJ_w">YouTube Channel</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+<ul>
+<li>- This game is inspired by the poker variant, Jacks or Better. NOTE: code to manage input from affecting browser window is from StackOverflow. </a></li>
+</ul>
+</li>
+
+<li><strong>High Concept:</strong>
+A one-sentence summary of your game.
+- Fill your mug with ice before it melts by gambling.
+</li>
+
+<li><strong>Theme:</strong>
+State which of the Storymatic themes you used.
+- Ice. Gambler.
+</li>
+
+<li><strong>Mandated Variety:</strong>
+State which input, randomness, genre, and play style you used in this prototype.
+- Keyboard input, mouse input, musical fantasy, and fast based gambling.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+What game mechanic is this prototype evaluating?
+- Pattern matching and collisions of sprites.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+What experience do you want players to have when playing your game?
+- Intense throbbing.
+</li>
+
+<li><strong>Gameplay:</strong>
+A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+- GOAL: Fill glass up with 28 ice cubes in the least amount of turns possible. HOW: Press 'Draw'. Here's what could show up: There are numbers 2,3,and 4. There are symbols 'Popsicle' and 'Sandals'-
+
+-Ice cubes are awarded in the following fashion:-
+-Pair of symbols (e.g. two popsicles): 1 ice cube-
+-Triple of any number or symbol: 3 ice cubes-
+-Four of a kind for any number or symbol: 4 ice cubes-
+-Two pair(e.g. pair of this and a pair of that): 2 ice cubes-
+-Straight (e.g. 2,3,4,popsicle OR 3,4,popsicle,sandals): 4 ice cubes-
+
+-Press hold to save what you want, then press 'Deal'-
+-You are then awarded your ice cubes, that is one turn-
+-BEWARE: you must be fast, ice cubes will melt!
+</li>
+
+<li><strong>Strategies:</strong>
+What player strategies do you expect will be effective at playing this game?
+- Just keep drawing and dealing not holding any card could be beneficial if randomness is in your favor.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
+How will the dramatic tension interact with the gameplay tension?
+- You are on a beach and need a drink. But you can't have a drink cold. Blasphemy! Fill your cup up with ice before it all melts!!!
+</li>
+
+<li><strong>Target Audience:</strong>
+A single sentence that describes the demographic you're trying to reach.
+- Any age group.
+</li>
+
+<li><strong>Play Time:</strong>
+How long does your game take to play?
+- 1-4 minutes depending on speed and chance.
+</li>
+
+</ul>
+</div>
+</body>
+</html>
