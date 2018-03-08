@@ -26,6 +26,13 @@ GameStates.makePreloader = function( game ) {
             game.load.image('titlePage', 'assets/kitchen3.jpg');
             game.load.audio('titleMusic', ['assets/theme.mp3']);
             // Load in-game assets
+            game.load.audio('blop', ['assets/blop.mp3']);
+            game.load.audio('crash', ['assets/crash.mp3']);
+            game.load.audio('fart', ['assets/fart.mp3']);
+            game.load.audio('smash', ['assets/smash.mp3']);
+            game.load.audio('woosh', ['assets/woosh.mp3']);
+            game.load.audio('yay', ['assets/yay.mp3']);
+            game.load.audio('zoey', ['assets/zoey101.mp3']);
             game.load.image('avocado', 'assets/avocado.png');
             game.load.image('bacon', 'assets/bacon.png');
             game.load.image('bread', 'assets/bread.png');
@@ -43,6 +50,7 @@ GameStates.makePreloader = function( game ) {
             game.load.image('teapot3', 'assets/teapot3.png');
             game.load.image('button', 'assets/button.png');
             game.load.image('next', 'assets/next.png');
+            game.load.image('black', 'assets/black.jpg');
         },
     
         create: function () {

@@ -57,6 +57,16 @@ GameStates.makeGame = function( game, shared ) {
     var tempLayers = {};
     var buttons = {button1,button2,button3,button4,button5,button6,button7,button8};
     var possibleLayer;
+    var shipText;
+    var shipString = '';
+    var blopSound;
+    var crashSound;
+    var fartSound;
+    var smashSound;
+    var wooshSound;
+    var yaySound;
+    var key;
+
 
     // fix locked arrow keys
     window.addEventListener("keydown",
@@ -85,23 +95,30 @@ GameStates.makeGame = function( game, shared ) {
             steam.scale.setTo(.25);
             if(phase < 3){
                 game.physics.arcade.moveToObject(steam,ship,240);
+    
             }
             else if(phase < 6){
                 game.physics.arcade.moveToObject(steam,ship,480);
+                teapot3.alpha = 1;
             }
             else{
                 game.physics.arcade.moveToObject(steam,ship,720);
+                teapot2.alpha = 1;
+                game.world.bringToTop(teapot2);
             }
             
         }
     }
 
     function hitShip(body1,body2){
+        smashSound.play();
         shipHealth-=10;
+        shipText.setText(shipString + shipHealth);
         body2.kill();
     }
 
     function killSteam(body){
+        wooshSound.play();
         body.kill();
     }
 
@@ -149,7 +166,7 @@ GameStates.makeGame = function( game, shared ) {
         }
         // add possible layers
         
-        nextButton = game.add.button(50,450, 'next', generateEquation);
+        nextButton = game.add.button(50,420, 'next', generateEquation);
         playButton.pendingDestroy = true;
         var answer = 0;
         var temp = game.rnd.integerInRange(0,1);
@@ -196,6 +213,7 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function selection(){
+        blopSound.play();
         //remove bottom sandwich layers
         for(var i = 0; i < 8; i++){
             tempLayers[i].destroy();
@@ -204,6 +222,7 @@ GameStates.makeGame = function( game, shared ) {
         if(choices[selectChoice-1] == roundAnswer){
             if(phase == 0){
                 if(tempLayers[selectChoice-1].key == 'bread'){
+                    yaySound.play();
                     topBun3.alpha = 1;
                     phase++;
                 }
@@ -212,8 +231,7 @@ GameStates.makeGame = function( game, shared ) {
             else if(phase == 7){
                 if(tempLayers[selectChoice-1].key == 'bread'){
                     bottomBun3.alpha = 1;
-                    // END GAME HERE *******************************************************
-                    endGame(0);
+                    yaySound.play();
                     phase++;
                 }
             }
@@ -223,6 +241,7 @@ GameStates.makeGame = function( game, shared ) {
                 if(tempLayers[selectChoice-1].key == randomSandwichLayers[phase-1].key){
                     console.log("Made it!!")
                     randomSandwichLayers3[phase-1].alpha = 1;
+                    yaySound.play();
                     phase++;
                 }
             }
@@ -230,6 +249,7 @@ GameStates.makeGame = function( game, shared ) {
             
         }
         else{
+            fartSound.play();
             console.log('wrong!');
             throwSteam();
         }
@@ -247,6 +267,9 @@ GameStates.makeGame = function( game, shared ) {
     }
 
     function endGame(num){
+        shipHealth = 100;
+        equation = '';
+        phase = 0;
         game.state.start('End', true, false, num);
     }
     
@@ -256,6 +279,13 @@ GameStates.makeGame = function( game, shared ) {
         },
     
         create: function () {
+            blopSound = game.add.audio('blop');
+            crashSound = game.add.audio('crash');
+            fartSound = game.add.audio('fart');
+            smashSound = game.add.audio('smash');
+            wooshSound = game.add.audio('woosh');
+            yaySound = game.add.audio('yay');
+
             wallpaper = game.add.tileSprite(0,0,800,600,'titlePage');
             // spawn teapot and ship
             teapot1 = game.add.sprite(5,275,'teapot1');
@@ -276,22 +306,32 @@ GameStates.makeGame = function( game, shared ) {
             steams.createMultiple(500,'steam',0,false);
 
             //spawn buttons
-            button1 = game.add.button(30,535, 'button', selection, {param1: 1}, 2, 1, 0);
-            button2 = game.add.button(130,535, 'button', selection, {param1: 2}, 2, 1, 0);
-            button3 = game.add.button(230,535, 'button', selection, {param1: 3}, 2, 1, 0);
-            button4 = game.add.button(330,535, 'button', selection, {param1: 4}, 2, 1, 0);
-            button5 = game.add.button(430,535, 'button', selection, {param1: 5}, 2, 1, 0);
-            button6 = game.add.button(530,535, 'button', selection, {param1: 6}, 2, 1, 0);
-            button7 = game.add.button(630,535, 'button', selection, {param1: 7}, 2, 1, 0);
-            button8 = game.add.button(730,535, 'button', selection, {param1: 8}, 2, 1, 0);
-            button1.scale.setTo(0.3);
-            button2.scale.setTo(0.3);
-            button3.scale.setTo(0.3);
-            button4.scale.setTo(0.3);
-            button5.scale.setTo(0.3);
-            button6.scale.setTo(0.3);
-            button7.scale.setTo(0.3);
-            button8.scale.setTo(0.3);
+            button1 = game.add.button(15,500, 'button', selection, {param1: 1}, 2, 1, 0);
+            button2 = game.add.button(115,500, 'button', selection, {param1: 2}, 2, 1, 0);
+            button3 = game.add.button(215,500, 'button', selection, {param1: 3}, 2, 1, 0);
+            button4 = game.add.button(315,500, 'button', selection, {param1: 4}, 2, 1, 0);
+            button5 = game.add.button(415,500, 'button', selection, {param1: 5}, 2, 1, 0);
+            button6 = game.add.button(515,500, 'button', selection, {param1: 6}, 2, 1, 0);
+            button7 = game.add.button(615,500, 'button', selection, {param1: 7}, 2, 1, 0);
+            button8 = game.add.button(715,500, 'button', selection, {param1: 8}, 2, 1, 0);
+            button1.scale.setTo(0.6);
+            button2.scale.setTo(0.6);
+            button3.scale.setTo(0.6);
+            button4.scale.setTo(0.6);
+            button5.scale.setTo(0.6);
+            button6.scale.setTo(0.6);
+            button7.scale.setTo(0.6);
+            button8.scale.setTo(0.6);
+            
+            button1.alpha = 0;
+            button2.alpha = 0;
+            button3.alpha = 0;
+            button4.alpha = 0;
+            button5.alpha = 0;
+            button6.alpha = 0;
+            button7.alpha = 0;
+            button8.alpha = 0;
+            
             var j = 10;
             for(var i = 0;i<8;i++){
                 possibleLayer = game.rnd.integerInRange(0,6);
@@ -300,6 +340,7 @@ GameStates.makeGame = function( game, shared ) {
                 tempLayers[i].alpha = 0.7;
                 j+=100;
             }
+            
             game.world.bringToTop(button1);
             game.world.bringToTop(button2);
             game.world.bringToTop(button3);
@@ -308,7 +349,8 @@ GameStates.makeGame = function( game, shared ) {
             game.world.bringToTop(button6);
             game.world.bringToTop(button7);
             game.world.bringToTop(button8);
-            playButton = game.add.button(700,450, 'play', play);
+            
+            playButton = game.add.button(700,420, 'play', play);
 
 
             //enable physics
@@ -325,6 +367,12 @@ GameStates.makeGame = function( game, shared ) {
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
             text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+
+            shipString = 'Ship Health: ';
+            shipText = game.add.text(650, 225, shipString + shipHealth, style );
+            text.anchor.setTo( 0.5, 0.0 );
+            game.world.bringToTop(shipText);
+            shipText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
             var text2 = game.add.text(95, 110, "Your current sandwich", style );
             text2.anchor.setTo( 0.5, 0.0 );
@@ -349,42 +397,42 @@ GameStates.makeGame = function( game, shared ) {
             equationText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
             // choice 1 text
-            choice1Text = game.add.text(45, 500, choice1, style2 );
+            choice1Text = game.add.text(45, 465, choice1, style2 );
             choice1Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice1Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 2 text
-            choice2Text = game.add.text(145, 500, choice2, style2 );
+            choice2Text = game.add.text(145, 465, choice2, style2 );
             choice2Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice2Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 3 text
-            choice3Text = game.add.text(245, 500, choice3, style2 );
+            choice3Text = game.add.text(245, 465, choice3, style2 );
             choice3Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice3Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 4 text
-            choice4Text = game.add.text(345, 500, choice4, style2 );
+            choice4Text = game.add.text(345, 465, choice4, style2 );
             choice4Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice4Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 5 text
-            choice5Text = game.add.text(445, 500, choice5, style2 );
+            choice5Text = game.add.text(445, 465, choice5, style2 );
             choice5Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice5Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 6 text
-            choice6Text = game.add.text(545, 500, choice6, style2 );
+            choice6Text = game.add.text(545, 465, choice6, style2 );
             choice6Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice6Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 7 text
-            choice7Text = game.add.text(645, 500, choice7, style2 );
+            choice7Text = game.add.text(645, 465, choice7, style2 );
             choice7Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice7Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // choice 8 text
-            choice8Text = game.add.text(745, 500, choice8, style2 );
+            choice8Text = game.add.text(745, 465, choice8, style2 );
             choice8Text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text2);
             choice8Text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
@@ -397,7 +445,7 @@ GameStates.makeGame = function( game, shared ) {
             //randomly throw steam for added dificulty
             game.time.events.loop(Phaser.Timer.SECOND * game.rnd.integerInRange(5,10),throwSteam,this);
             
-            
+            key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
         },
 
@@ -405,6 +453,13 @@ GameStates.makeGame = function( game, shared ) {
             game.physics.arcade.collide(ship, steams, null, hitShip, this);
             if(shipHealth == 0){
                 endGame(1);
+            }
+            if(phase == 8){
+                endGame(0);
+            }
+
+            if (key.isDown){
+                endGame(0);
             }
         }
     };

@@ -11,7 +11,7 @@ GameStates.makeEnd = function( game, shared ) {
     function mainMenu(pointer) {
 
         //	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-        //music.stop();
+        music.stop();
 
         //	And start the actual game
         game.state.start('MainMenu');
@@ -31,6 +31,13 @@ GameStates.makeEnd = function( game, shared ) {
         },
     
         create: function () {
+            if(resultNum == 0){
+                music = game.add.audio('zoey');
+            }
+            else{
+                music = game.add.audio('titleMusic');
+            }
+            music.play();
             console.log("in end");
             game.add.sprite(0, 0, 'titlePage');
             // add enter key
