@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Bridge It, Bridget... - Joseph Bessette</title>
+	<script src="js/phaser.min.js"></script>
+	<!-- Boot.js must come first since it creates the BasicGame object
+	that stores all the states. -->
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Game.js"></script>
+	<script src="js/End.js"></script>
+	<script src="js/Rules.js"></script>
+	<!-- main.js must come last since it references the other ones. -->
+	<script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Bridge It, Bridget...</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+What is original about your game?
+- This game pays homage to Tetris. However is adds construction elements and more critical thinking.
+</li>
+
+<li><strong>Technical Merit:</strong>
+What is interesting about your game technology?
+- This games maps tetrominoes to a grid and allows a free construction of a mathematically complex bridge.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+What did you learn from this prototype?
+- Learned how to improve the workflow of developing games.
+- Easiest: Art and design.
+- Hardest: OMG mapping to a grid is a pain in the @$$!!! There are so many variants when it comes to what the player cando and setting boundries involves tons of conditions.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>Loading bar and buttons: Self-Made</li>
+<li>Sound effects found on SoundBible: <a href="http://soundbible.com/free-sound-effects-1.html"> Sounds</a></li>
+<li>Home Wallpaper <a href="https://www.sketchappsources.com/free-source/2371-detailed-vector-world-map-sketch-freebie-resource.html"> Wallpaper</a></li>
+<li>Game Wallpaper <a href="https://pixhome.blogspot.com/2015/05/Moon-light-and-stars-night-background-with-trees-nature-art-images.html"> Wallpaper</a></li>
+<li>All symbols and other graphics: <a href="https://www.shareicon.net/"> Symbols and Graphics</a></li>
+<li>Music: Final Fantasy XV 'Somnus' Chiptune by:Blake Asheart <a href="https://www.youtube.com/watch?v=r1ps1zzqccQ"> YouTube Channel</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+<ul>
+<li>- This game is a derivative of Tetris and Bridge Building. NOTE: code to manage input from affecting browser window is from StackOverflow. In regards to physical prototype, I found that it was far harder to implement the digital prototype as boundaries were far more difficult to manage. It almost made more sense to leave it a physical game to be honest. TA, if youre reading this, go easy on the grade, this joint was hard af.</a></li>
+</ul>
+</li>
+
+<li><strong>High Concept:</strong>
+A one-sentence summary of your game.
+- Build a bridge using tetrominoes in order to reach your destination.
+</li>
+
+<li><strong>Theme:</strong>
+State which of the Storymatic themes you used.
+- One way ticket, carpenter, TETRIS
+</li>
+
+<li><strong>Mandated Variety:</strong>
+State which input, randomness, genre, and play style you used in this prototype.
+- Mouse movement, dragging sprites, random blockades, critical thinking playstyle.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+What game mechanic is this prototype evaluating?
+- Bridge Building and physical to digital implementation.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+What experience do you want players to have when playing your game?
+- Mild headache and confusion.
+</li>
+
+<li><strong>Gameplay:</strong>
+A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
+- 
+The goal of this game is to build a bridge across the grid as effciently as possible. Do this by keeping your score as low as possible using the most efficient bridge pieces. Click on what piece you want then drag it where you want  it to go. You can undo pieces you place. Your score is calculated as follows: Score = [(L OR J bricks*2) + (I-bricks*3) + (S OR Z bricks*1)] + total number of bricks Rules as follows:Stack endpieces, Dont build along shaded bars, If you cant solve, just refresh and try again.'GO' just ends game when you want FOR NOW. **Calculated score coming soon**"
+
+</li>
+
+<li><strong>Strategies:</strong>
+What player strategies do you expect will be effective at playing this game?
+- Using the I pieces to close the gap as fast as possible.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
+How will the dramatic tension interact with the gameplay tension?
+- You are trying to fly your plane, but it can olny go one way and there are clouds in the way, evade the clouds and make it to your destination.
+</li>
+
+<li><strong>Target Audience:</strong>
+A single sentence that describes the demographic you're trying to reach.
+- 12-90+
+</li>
+
+<li><strong>Play Time:</strong>
+How long does your game take to play?
+- 5 minutes depending on brain power!
+</li>
+
+</ul>
+</div>
+</body>
+</html>
