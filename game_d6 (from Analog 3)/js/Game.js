@@ -34,9 +34,16 @@ GameStates.makeGame = function( game, shared ) {
     var wallArray = [];
     var typeArray = [];
     var orientationArray = []; // 0 up, 1 down 
-    var brickCount = 0;
+    var brickCount = 0; // technically a 'tile' count
     var plane;
-
+    var score = 0;
+    var numBricks = 0;
+    var iBrickCount = 0;
+    var jBrickCount = 0;
+    var lBrickCount = 0;
+    var sBrickCount = 0;
+    var zBrickCount = 0;
+    
     // fix locked arrow keys
     window.addEventListener("keydown",
         function(e){
@@ -61,7 +68,27 @@ GameStates.makeGame = function( game, shared ) {
         }
         else{
             temp.destroy();
-            typeArray.pop();
+            var temp = typeArray.pop();
+            if(temp < 3){
+                numBricks--;
+                iBrickCount--;
+            }
+            else if(temp < 7){
+                numBricks--;
+                jBrickCount--;
+            }
+            else if(temp < 11){
+                numBricks--;
+                lBrickCount--;
+            }
+            else if(temp < 13){
+                numBricks--;
+                sBrickCount--;
+            }
+            else{
+                numBricks--;
+                zBrickCount--;
+            }
         }
         
     }
@@ -71,10 +98,16 @@ GameStates.makeGame = function( game, shared ) {
             plane.destroy();
         }
         // add plane
+        var temp = 200;
         plane = game.add.sprite(sourcebrick[0],sourcebrick[1], 'plane3');
-        game.add.tween(plane).to( { x: destbrick[0]}, 3000, Phaser.Easing.Linear.None, true,0);
-        game.add.tween(plane).to( { y: destbrick[1]}, 3000, Phaser.Easing.Linear.None, true,0);
-        endGame(0);
+        console.log("numBricks: " + numBricks);
+        console.log("iBricks: " + iBrickCount);
+        console.log("jBricks: " + jBrickCount);
+        console.log("lBricks: " + lBrickCount);
+        console.log("sBricks: " + sBrickCount);
+        console.log("zBricks: " + zBrickCount);
+        score = numBricks + ((iBrickCount * 3) + (lBrickCount * 2) + (jBrickCount * 2) + (sBrickCount) + (zBrickCount));
+        endGame(score);
     }
 
     function checkCollideI(sprite, pointer){
@@ -87,6 +120,8 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    iBrickCount--;
                 }
             }
         }
@@ -95,18 +130,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            iBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            iBrickCount--;
         }
         
     }
@@ -121,6 +153,8 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    iBrickCount--;
                 }
             }
         }
@@ -129,18 +163,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            iBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            iBrickCount--;
         }
 
     }
@@ -155,11 +186,15 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
 
             }
@@ -169,18 +204,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            jBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            jBrickCount--;
         }
 
     }
@@ -195,21 +227,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
             }
         }
@@ -218,18 +258,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            jBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            jBrickCount--;
         }
  
     }
@@ -244,21 +281,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
             }
         }
@@ -267,18 +312,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            jBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            jBrickCount--;
         }
 
     }
@@ -293,21 +335,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 50== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    jBrickCount--;
                 }
             }
         }
@@ -316,20 +366,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            jBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            jBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideL(sprite, pointer){
@@ -342,21 +388,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
             }
         }
@@ -365,20 +419,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideL90(sprite, pointer){
@@ -391,21 +441,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y  + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x  + 25 == wallArray[j][0] && sprite.y + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
             }
         }
@@ -414,20 +472,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideL180(sprite, pointer){
@@ -440,21 +494,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y  + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x  + 50 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
             }
         }
@@ -463,20 +525,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideL270(sprite, pointer){
@@ -489,21 +547,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 25== wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y  + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
                 if (sprite.x  + 25 == wallArray[j][0] && sprite.y  + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    lBrickCount--;
                 }
             }
         }
@@ -512,18 +578,15 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            lBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
-        }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
+            numBricks--;
+            lBrickCount--;
         }
 
     }
@@ -538,21 +601,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
             }
         }
@@ -561,20 +632,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            sBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            sBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideS90(sprite, pointer){
@@ -587,21 +654,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x  == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    sBrickCount--;
                 }
             }
         }
@@ -610,20 +685,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            sBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            sBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideZ(sprite, pointer){
@@ -636,21 +707,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x + 50 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
             }
         }
@@ -659,20 +738,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            zBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            zBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     function checkCollideZ90(sprite, pointer){
@@ -685,21 +760,29 @@ GameStates.makeGame = function( game, shared ) {
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x + 25 == wallArray[j][0] && sprite.y + 25 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
                 if (sprite.x == wallArray[j][0] && sprite.y + 50 == wallArray[j][1]){
                     var temp = brickArray.pop();
                     temp.destroy();
                     typeArray.pop();
+                    numBricks--;
+                    zBrickCount--;
                 }
             }
         }
@@ -708,20 +791,16 @@ GameStates.makeGame = function( game, shared ) {
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            zBrickCount--;
         }
         if (sprite.x + sprite.width > 675 && sprite.y < 500){
             var temp = brickArray.pop();
             temp.destroy();
             typeArray.pop();
+            numBricks--;
+            zBrickCount--;
         }
-        // edit brickCount
-        if(brickCount == 0){
-            brickCount +=4;
-        }
-        else{
-            brickCount +=3;
-        }
-
     }
 
     //type1
@@ -732,6 +811,8 @@ GameStates.makeGame = function( game, shared ) {
         iBrick.input.enableSnap(25,25,false,true)
         brickArray.push(iBrick);
         typeArray.push(1);
+        numBricks++;
+        iBrickCount++;
         iBrick.events.onDragStop.add(checkCollideI,this);
 
     }
@@ -743,6 +824,8 @@ GameStates.makeGame = function( game, shared ) {
         i90Brick.input.enableSnap(25,25,false,true)
         brickArray.push(i90Brick);
         typeArray.push(2);
+        numBricks++;
+        iBrickCount++;
         i90Brick.events.onDragStop.add(checkCollideI90,this);
     }
     //type3
@@ -753,6 +836,8 @@ GameStates.makeGame = function( game, shared ) {
         jBrick.input.enableSnap(25,25,false,true)
         brickArray.push(jBrick);
         typeArray.push(3);
+        numBricks++;
+        jBrickCount++;
         jBrick.events.onDragStop.add(checkCollideJ,this);
     }
     //type4
@@ -763,6 +848,8 @@ GameStates.makeGame = function( game, shared ) {
         j90Brick.input.enableSnap(25,25,false,true)
         brickArray.push(j90Brick);
         typeArray.push(4);
+        numBricks++;
+        jBrickCount++;
         j90Brick.events.onDragStop.add(checkCollideJ90,this);
     }
     //type5
@@ -773,6 +860,8 @@ GameStates.makeGame = function( game, shared ) {
         j180Brick.input.enableSnap(25,25,false,true)
         brickArray.push(j180Brick);
         typeArray.push(5);
+        numBricks++;
+        jBrickCount++;
         j180Brick.events.onDragStop.add(checkCollideJ180,this);
     }
     //type6
@@ -783,6 +872,8 @@ GameStates.makeGame = function( game, shared ) {
         j270Brick.input.enableSnap(25,25,false,true)
         brickArray.push(j270Brick);
         typeArray.push(6);
+        numBricks++;
+        jBrickCount++;
         j270Brick.events.onDragStop.add(checkCollideJ270,this);
     }
     //type7
@@ -793,6 +884,8 @@ GameStates.makeGame = function( game, shared ) {
         lBrick.input.enableSnap(25,25,false,true)
         brickArray.push(lBrick);
         typeArray.push(7);
+        numBricks++;
+        lBrickCount++;
         lBrick.events.onDragStop.add(checkCollideL,this);
     }
     //type8
@@ -803,6 +896,8 @@ GameStates.makeGame = function( game, shared ) {
         l90Brick.input.enableSnap(25,25,false,true)
         brickArray.push(l90Brick);
         typeArray.push(8);
+        numBricks++;
+        lBrickCount++;
         l90Brick.events.onDragStop.add(checkCollideL90,this);
     }
     //type9
@@ -813,6 +908,8 @@ GameStates.makeGame = function( game, shared ) {
         l180Brick.input.enableSnap(25,25,false,true)
         brickArray.push(l180Brick);
         typeArray.push(9);
+        numBricks++;
+        lBrickCount++;
         l180Brick.events.onDragStop.add(checkCollideL180,this);
     }
     //type10
@@ -823,6 +920,8 @@ GameStates.makeGame = function( game, shared ) {
         l270Brick.input.enableSnap(25,25,false,true)
         brickArray.push(l270Brick);
         typeArray.push(10);
+        numBricks++;
+        lBrickCount++;
         l270Brick.events.onDragStop.add(checkCollideL270,this);
 
     }
@@ -834,6 +933,8 @@ GameStates.makeGame = function( game, shared ) {
         sBrick.input.enableSnap(25,25,false,true)
         brickArray.push(sBrick);
         typeArray.push(11);
+        numBricks++;
+        sBrickCount++;
         sBrick.events.onDragStop.add(checkCollideS,this);
     }
     //type12
@@ -844,6 +945,8 @@ GameStates.makeGame = function( game, shared ) {
         s90Brick.input.enableSnap(25,25,false,true)
         brickArray.push(s90Brick);
         typeArray.push(12);
+        numBricks++;
+        sBrickCount++;
         s90Brick.events.onDragStop.add(checkCollideS90,this);
     }
     //type13
@@ -854,6 +957,8 @@ GameStates.makeGame = function( game, shared ) {
         zBrick.input.enableSnap(25,25,false,true)
         brickArray.push(zBrick);
         typeArray.push(13);
+        numBricks++;
+        zBrickCount++;
         zBrick.events.onDragStop.add(checkCollideZ,this);
     }
     //type14
@@ -864,6 +969,8 @@ GameStates.makeGame = function( game, shared ) {
         z90Brick.input.enableSnap(25,25,false,true)
         brickArray.push(z90Brick);
         typeArray.push(14);
+        numBricks++;
+        zBrickCount++;
         z90Brick.events.onDragStop.add(checkCollideZ90,this);
     }
 
@@ -872,15 +979,22 @@ GameStates.makeGame = function( game, shared ) {
 
     }
 
-    function endGame(num){
-        var sourcebrick = [0,0]; // TOP LEFT of Grid
-        var destbrick = [0,0];
-        var brickArray = [];
-        var wallArray = [];
-        var typeArray = [];
-        var orientationArray = []; // 0 up, 1 down 
-        var brickCount = 0;
-        game.state.start('End', true, false,num);
+    function endGame(endscore){
+        var temp = endscore;
+        sourcebrick = [0,0]; // TOP LEFT of Grid
+        destbrick = [0,0];
+        brickArray = [];
+        wallArray = [];
+        typeArray = [];
+        orientationArray = []; // 0 up, 1 down 
+        brickCount = 0;
+        numBricks = 0
+        iBrickCount = 0;
+        jBrickCount = 0;
+        lBrickCount = 0;
+        sBrickCount = 0;
+        zBrickCount = 0;
+        game.state.start('End', true, false,temp);
     }
     
     return {
@@ -889,6 +1003,7 @@ GameStates.makeGame = function( game, shared ) {
         },
     
         create: function () {
+
             //load audio
             //load background
             game.stage.backgroundColor = '#2d2d2d';
