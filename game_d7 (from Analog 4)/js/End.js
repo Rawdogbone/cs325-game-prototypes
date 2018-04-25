@@ -2,19 +2,15 @@
 /** @param {Phaser.Game} game*/
 GameStates.makeEnd = function( game, shared ) {
     var temp = null;
-    var gameOutcome = null;
     var enterKey2 = null;
     var music = null;
-    var result;
-    var resultNum;
-    var iscore;
-    var jscore;
-    var lscore;
-    var sscore;
-    var zscore;
+    var mainButton;
+    var levelButton;
+    var emitter;
+    var clickSound;
 
     function mainMenu(pointer) {
-
+        clickSound.play();
         //	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
         music.stop();
 
@@ -23,19 +19,19 @@ GameStates.makeEnd = function( game, shared ) {
 
     }
 
+    function level(){
+        clickSound.play();
+        music.stop();
+
+        game.state.start('Levels');
+    }
+
     return {
-        init: function(num,i,j,l,s,z){
-            resultNum = num;
-            iscore = i;
-            jscore = j;
-            lscore = l;
-            sscore = s;
-            zscore = z; 
-        },
-    
+ 
         create: function () {
             music = game.add.audio('victory');
             music.play();
+            clickSound = game.add.audio('click');
             game.add.sprite(0, 0, 'titlePage');
             // add enter key
             enterKey2 = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -43,78 +39,38 @@ GameStates.makeEnd = function( game, shared ) {
             // MENU TEXT
             // Title Text
             // Title Text
-            var style = { font: "bold 45px Consolas", fill: "#000", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Bridge It, Bridget...", style );
+            var style = { font: "bold 45px forte", fill: "#000", align: "center" };
+            var text = game.add.text( game.world.centerX, 15, "iSpy the Differences", style );
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
             text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
             // Rules Text
-            var style2 = { font: "bold 30px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,425, "Your Score: " + resultNum , style2);
+            var style2 = { font: "bold 40px forte", fill: "#000", align: "center" };
+            var text2 = game.add.text(200,200, "LEVEL COMPLETE :)", style2);
             text2.anchor.setTo( 0.0, 0.0 );
             text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            //score text
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,460, "I Bricks: " + iscore + "    x 3 = " + iscore * 3 , style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,475, "J Bricks: " + jscore  + "    x 2 = " + jscore * 2, style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,490, "L Bricks: " + lscore + "    x 2 = " + lscore * 2, style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,505, "S Bricks: " + sscore + "    x 1 = " + sscore * 1, style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,520, "Z Bricks: " + zscore + "    x 2 = " + zscore * 1, style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            var style2 = { font: "bold 18px Consolas", fill: "#000", align: "center" };
-            var text2 = game.add.text(425,535, "Total Bricks:        " + (iscore + jscore + lscore + sscore + zscore), style2);
-            text2.anchor.setTo( 0.0, 0.0 );
-            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            // Rules
-            var rules = "Thank you so much for playing,\nPress 'Enter' to go back to the \nMain Menu and try again!"
-            var text3 = game.add.text(0, 480, rules, {font: "20px Consolas", fill: '#000'});
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
             // version Num
             var style = { font: "bold 20px Consolas", fill: "#000", align: "center" };
-            var text = game.add.text( game.world.centerX, 100, "version 2.0", style );
+            var text2 = game.add.text( game.world.centerX, 100, "version 1.0 Alpha", style );
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
-            text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+            text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
-            // particle effects
-            var emitter = game.add.emitter(game.world.centerX, -50 , 50);
-            emitter.width = game.world.width;
-            emitter.makeParticles('plane1');
-            
-            emitter.angle = 0;
+            mainButton = game.add.button(150,300, 'main', mainMenu, this, 2, 1, 0);
+            levelButton = game.add.button(150,400, 'level', level, this, 2, 1, 0);
 
-            emitter.minParticleScale = 0.5;
-            emitter.maxParticleScale = 1.5;
+            // emitter
+            emitter = game.add.emitter(game.world.centerX, -25, 100);
+            emitter.width = 800;
+            emitter.makeParticles(['bee', 'cane', 'coco', 'ghost', 'goldfish', 'rocket', 'beer']);
+            emitter.minParticleSpeed.set(.5);
+            emitter.maxParticleSpeed.set(2);
+            emitter.setRotation(0, 25);
+            emitter.setAlpha(0.3, 0.8);
 
-            emitter.setYSpeed(0.00001,0.00001);
-            emitter.setXSpeed(-20,20);
+            emitter.start(false, 5000, 100);
 
-            emitter.minRotation = 0;
-	        emitter.maxRotation = 0;
-
-            emitter.start(false,5000,5,0);
-    
         },
     
         update: function () {

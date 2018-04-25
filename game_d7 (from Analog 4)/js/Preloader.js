@@ -31,6 +31,8 @@ GameStates.makePreloader = function( game ) {
             game.load.image('play','assets/play.png');
             game.load.image('rules','assets/rules.png');
             game.load.image('story','assets/story.png');
+            game.load.image('main','assets/main.png');
+            game.load.image('level','assets/level.png');
 
             game.load.image('check','assets/check.png');
             game.load.image('x','assets/x.png');
@@ -78,7 +80,12 @@ GameStates.makePreloader = function( game ) {
             game.load.image('witch','assets/halloween/witch.png');
             game.load.image('halloweenWallpaper','assets/halloween/halloween.jpg');
             game.load.audio('halloweenMusic', ['assets/halloween/halloween.mp3']);
-            
+            game.load.audio('ghostMusic', ['assets/halloween/ghost.mp3']);
+            game.load.audio('candyMusic', ['assets/halloween/candy.mp3']);
+            game.load.audio('castleMusic', ['assets/halloween/castle.mp3']);
+            game.load.audio('witchMusic', ['assets/halloween/witch.mp3']);
+            game.load.audio('pumpkinMusic', ['assets/halloween/pumpkin.mp3']);
+
             //ocean
             game.load.image('crab','assets/ocean/crab.png');
             game.load.image('diving','assets/ocean/diving.png');

@@ -13,6 +13,7 @@ GameStates.makeLevels = function(game,shared) {
     var oceanButton;
     var spaceButton;
     var st_paddysButton;
+    var backButton;
 
     function halloweenLevel(){
         clickSound.play();
@@ -57,15 +58,28 @@ GameStates.makeLevels = function(game,shared) {
     }
 
     function over(button){
+        button.tint = 0xeeeeee * .5;
         button.scale.setTo(.33);
     }
 
     function out(button){
+        button.tint = 0xffffff;
         button.scale.setTo(.3);
+    }
+
+    function backover(button){
+        button.tint = 0xffffff * .5;
+        button.scale.setTo(.85);
+    }
+
+    function backout(button){
+        button.tint = 0xffffff;
+        button.scale.setTo(.75);
     }
 
     function mainMenu(pointer) {
         //	And start the actual game
+        clickSound.play();
         game.state.start('MainMenu',true,false,music2);
 
     }
@@ -76,6 +90,13 @@ GameStates.makeLevels = function(game,shared) {
         },
     
         create: function () {
+
+            if(music2 == null){
+                music2 = game.add.audio('titleMusic');
+                music2.loop = true;
+                music2.play();
+                music2.volume = 0.25;
+            }
             clickSound =  game.add.audio('click');
             game.add.sprite(0, 0, 'titlePage');
 
@@ -97,7 +118,11 @@ GameStates.makeLevels = function(game,shared) {
             game.world.bringToTop(text);
             text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
-
+            // back button
+            backButton = game.add.button(600,450, 'back', mainMenu, this, 2, 1, 0);
+            backButton.scale.setTo(.75);
+            backButton.events.onInputOver.add(backover,this,0,backButton);
+            backButton.events.onInputOut.add(backout,this,0,backButton);
 
             // level buttons
             halloweenButton = game.add.button(75,100, 'halloweenWallpaper', halloweenLevel, this, 2, 1, 0);
