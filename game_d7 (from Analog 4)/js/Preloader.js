@@ -58,6 +58,11 @@ GameStates.makePreloader = function( game ) {
             game.load.image('snowman','assets/christmas/snowman.png');
             game.load.image('tree','assets/christmas/tree.png');
             game.load.audio('christmasMusic', ['assets/christmas/christmas.mp3']);
+            game.load.audio('lightsMusic', ['assets/christmas/lights.mp3']);
+            game.load.audio('gift1Music', ['assets/christmas/gift1.mp3']);
+            game.load.audio('giftMusic', ['assets/christmas/gift.mp3']);
+            game.load.audio('santaMusic', ['assets/christmas/santa.mp3']);
+            game.load.audio('treeMusic', ['assets/christmas/tree.wav']);
             
             //easter
             game.load.image('coco','assets/easter/coco.png');

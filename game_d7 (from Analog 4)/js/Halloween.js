@@ -120,6 +120,11 @@ GameStates.makeHalloween = function(game,shared) {
     }
 
     function endGame(){
+        ghostSound.stop(); 
+        pumpkinSound.stop();
+        castleSound.stop();
+        witchSound.stop();
+        candySound.stop();
         music.stop();
         score = 5;
         game.state.start('End');
@@ -138,6 +143,11 @@ GameStates.makeHalloween = function(game,shared) {
             castleSound = game.add.audio('castleMusic');
             witchSound= game.add.audio('witchMusic');
             candySound =  game.add.audio('candyMusic');
+            ghostSound.volume = 0.25;    
+            pumpkinSound.volume = 0.25; 
+            castleSound.volume = 0.25; 
+            witchSound.volume = 0.25; 
+            candySound.volume = 0.25;        
 
             game.add.sprite(0, 0, 'titlePage');
 
