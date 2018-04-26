@@ -209,14 +209,14 @@ GameStates.makeSpace = function(game,shared) {
             //only add satellite on left
 
             //add other non-buttons 
-            game.add.button(250,0, 'spider',nonbutton,this);
-            game.add.button(650,0, 'spider',nonbutton,this);
+            game.add.button(250,0, 'startup',nonbutton,this);
+            game.add.button(650,0, 'startup',nonbutton,this);
 
-            game.add.button(225,375, 'cat',nonbutton,this);
-            game.add.button(625,375, 'cat',nonbutton,this);
+            game.add.button(225,375, 'jupiter',nonbutton,this);
+            game.add.button(625,375, 'jupiter',nonbutton,this);
 
-            game.add.button(75,125, 'cat',nonbutton,this);
-            game.add.button(475,125, 'cat',nonbutton,this);
+            game.add.button(75,125, 'jupiter',nonbutton,this);
+            game.add.button(475,125, 'jupiter',nonbutton,this);
 
             game.add.button(336,400, 'alien',nonbutton,this);
             game.add.button(736,400, 'alien',nonbutton,this);
