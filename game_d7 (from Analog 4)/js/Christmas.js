@@ -149,7 +149,7 @@ GameStates.makeChristmas = function(game,shared) {
             gift1Sound.volume = 0.25; 
             santaSound.volume = 0.25;        
 
-            game.add.sprite(0, 0, 'titlePage');
+            game.add.sprite(0, 0, 'red');
 
             // add enter key
             enterKey3 = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -165,14 +165,14 @@ GameStates.makeChristmas = function(game,shared) {
             hortBar = game.add.image(400,500,'bar');
 
             //text
-            var style = { font: "15px forte", fill: "#000", align: "center" };
+            var style = { font: "15px forte", fill: "#fff", align: "center" };
             var text = game.add.text(75, 510, "Your Differences:", style );
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
             text.setShadow(3, 3, 'rgba(0,0,0,0)', 5);
 
             scoreString = 'Differences Left: ';
-            scoreText = game.add.text(525, 550, scoreString + score, { font: '30px forte', fill: '#000' });
+            scoreText = game.add.text(525, 550, scoreString + score, { font: '30px forte', fill: '#fff' });
 
             //add lights
             lightsButton = game.add.button(50,300, 'lights', lights, this, 2, 1, 0);

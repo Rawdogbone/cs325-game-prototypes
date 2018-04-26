@@ -189,18 +189,6 @@ GameStates.makeLevels = function(game,shared) {
             st_paddysButton.events.onInputOver.add(over,this,0,st_paddysButton);
             st_paddysButton.events.onInputOut.add(out,this,0,st_paddysButton);
             
-            game.add.image(435,125,'x');
-            game.add.image(610,125,'x');
-            game.add.image(85,335,'x');
-            game.add.image(260,335,'x');
-            game.add.image(435,335,'x');
-            beehiveButton.inputEnabled = false;
-            easterButton.inputEnabled = false;
-            oceanButton.inputEnabled = false;
-            spaceButton.inputEnabled = false;
-            st_paddysButton.inputEnabled = false;
-
-
         },
     
         update: function () {

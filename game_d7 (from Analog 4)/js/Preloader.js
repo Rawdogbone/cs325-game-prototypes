@@ -26,6 +26,9 @@ GameStates.makePreloader = function( game ) {
             //	As this is just a Project Template I've not provided these assets, swap them for your own.
             game.load.image('titlePage', 'assets/wallpaper.jpg');
             game.load.audio('titleMusic', ['assets/theme.mp3']);
+            game.load.image('ispy', 'assets/ispy.jpg');
+            game.load.image('ispy2', 'assets/ispy2.jpg');
+
             //game buttons
             game.load.image('back','assets/back.png');
             game.load.image('play','assets/play.png');
@@ -33,6 +36,15 @@ GameStates.makePreloader = function( game ) {
             game.load.image('story','assets/story.png');
             game.load.image('main','assets/main.png');
             game.load.image('level','assets/level.png');
+
+            game.load.image('orange','assets/orange.jpg');
+            game.load.image('red','assets/red.jpg');
+            game.load.image('yellow','assets/yellow.jpg');
+            game.load.image('lightblue','assets/lightblue.png');
+            game.load.image('blue','assets/blue.jpg');
+            game.load.image('black','assets/black.jpg');
+            game.load.image('green','assets/green.jpg');
+
 
             game.load.image('check','assets/check.png');
             game.load.image('x','assets/x.png');
@@ -46,7 +58,13 @@ GameStates.makePreloader = function( game ) {
             game.load.image('beehive1','assets/beehive/beehive1.png');
             game.load.image('honey','assets/beehive/honey.png');
             game.load.image('honeycomb','assets/beehive/honeycomb.png');
-            game.load.audio('beehiveMusic', ['assets/beehive/bees.mp3']);
+            game.load.audio('beehiveMusic', ['assets/beehive/beehive.mp3']);
+            game.load.audio('beeMusic', ['assets/beehive/bee.mp3']);
+            game.load.audio('bee1Music', ['assets/beehive/bee1.mp3']);
+            game.load.audio('bee2Music', ['assets/beehive/bee2.mp3']);
+            game.load.audio('honeyMusic', ['assets/beehive/honey.mp3']);
+            game.load.audio('honeycombMusic', ['assets/beehive/honeycomb.mp3']);
+
 
             //christmas
             game.load.image('cane','assets/christmas/cane.png');
@@ -74,6 +92,11 @@ GameStates.makePreloader = function( game ) {
             game.load.image('rabbit','assets/easter/rabbit.png');
             game.load.audio('easterMusic', ['assets/easter/easter.mp3']);
             game.load.image('easterWallpaper','assets/easter/easter.jpg');
+            game.load.audio('chickenMusic', ['assets/easter/chicken.mp3']);
+            game.load.audio('cocoMusic', ['assets/easter/coco.mp3']);
+            game.load.audio('eggMusic', ['assets/easter/egg.mp3']);
+            game.load.audio('egg1Music', ['assets/easter/egg1.mp3']);
+            game.load.audio('rabbitMusic', ['assets/easter/rabbit.mp3']);
 
             //halloween
             game.load.image('candy','assets/halloween/candy.png');
@@ -101,6 +124,12 @@ GameStates.makePreloader = function( game ) {
             game.load.image('whale','assets/ocean/whale.png');
             game.load.image('oceanWallpaper','assets/ocean/ocean.jpg');
             game.load.audio('oceanMusic', ['assets/ocean/ocean.mp3']);
+            game.load.audio('crabMusic', ['assets/ocean/crab.mp3']);
+            game.load.audio('dolphinMusic', ['assets/ocean/dolphin.mp3']);
+            game.load.audio('divingMusic', ['assets/ocean/diving.mp3']);
+            game.load.audio('goldfishMusic', ['assets/ocean/goldfish.mp3']);
+            game.load.audio('whaleMusic', ['assets/ocean/whale.mp3']);
+
 
             //space
             game.load.image('alien','assets/space/alien.png');
@@ -112,6 +141,11 @@ GameStates.makePreloader = function( game ) {
             game.load.image('startup','assets/space/startup.png');
             game.load.image('spaceWallpaper','assets/space/space.jpg');
             game.load.audio('spaceMusic', ['assets/space/space.mp3']);
+            game.load.audio('alienMusic', ['assets/space/alien.mp3']);
+            game.load.audio('astronautMusic', ['assets/space/astronaut.mp3']);
+            game.load.audio('earthMusic', ['assets/space/earth.mp3']);
+            game.load.audio('rocketMusic', ['assets/space/rocket.mp3']);
+            game.load.audio('satelliteMusic', ['assets/space/satellite.mp3']);
 
             //st_paddys
             game.load.image('beer','assets/st_paddys/beer.png');
@@ -123,7 +157,12 @@ GameStates.makePreloader = function( game ) {
             game.load.image('leprechaun2','assets/st_paddys/leprechaun2.png');
             game.load.image('st_paddysWallpaper','assets/st_paddys/st_paddys.jpg');
             game.load.audio('st_paddysMusic', ['assets/st_paddys/st_paddys.mp3']);
-            
+            game.load.audio('cloverMusic', ['assets/st_paddys/clover.mp3']);
+            game.load.audio('goldMusic', ['assets/st_paddys/gold.mp3']);
+            game.load.audio('leprechaunMusic', ['assets/st_paddys/leprechaun.mp3']);
+            game.load.audio('leprechaun1Music', ['assets/st_paddys/leprechaun1.mp3']);
+            game.load.audio('leprechaun2Music', ['assets/st_paddys/leprechaun2.mp3']);
+
             //extra sounds
             game.load.audio('click','assets/click.mp3');
             game.load.audio('pop','assets/pop.mp3');

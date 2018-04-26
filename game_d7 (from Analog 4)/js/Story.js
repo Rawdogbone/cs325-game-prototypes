@@ -5,16 +5,26 @@ GameStates.makeStory = function(game,shared) {
     var enterKey3 = null;
     var temp = null;
     var music2;
-    var blackBox;
-    var source;
-    var dest;
-    var plane;
     var clickSound;
+    var black;
+    var backButton;
+    var temp;
 
     function mainMenu(pointer) {
+        clickSound.play();
         //	And start the actual game
         game.state.start('MainMenu',true,false,music2);
 
+    }
+
+    function backover(button){
+        button.tint = 0xffffff * .5;
+        button.scale.setTo(.85);
+    }
+
+    function backout(button){
+        button.tint = 0xffffff;
+        button.scale.setTo(.75);
     }
 
     return {
@@ -25,8 +35,13 @@ GameStates.makeStory = function(game,shared) {
         create: function () {
             clickSound =  game.add.audio('click');
             game.add.sprite(0, 0, 'titlePage');
-            blackBox = game.add.sprite(0,0,'black');
-            blackBox.alpha = 0.6;
+            black = game.add.sprite(0,100, 'black');
+            black.scale.setTo(1,0.5);
+            black.alpha = 0.6;
+            temp = game.add.sprite(50, 400, 'ispy');
+            temp.scale.setTo(0.5);
+            temp = game.add.sprite(560, 400, 'ispy2');
+            temp.scale.setTo(0.5);
 
             // add enter key
             enterKey3 = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -34,75 +49,23 @@ GameStates.makeStory = function(game,shared) {
             // MENU TEXT
             // Title Text
             // Title Text
-            var style = { font: "bold 45px Consolas", fill: "#000", align: "center" };
-            var text = game.add.text( game.world.centerX, 15, "Bridge It, Bridget...", style );
+            var style = { font: "bold 45px forte", fill: "#000", align: "center" };
+            var text = game.add.text( game.world.centerX, 15, "iSpy the Differences!", style );
             text.anchor.setTo( 0.5, 0.0 );
             game.world.bringToTop(text);
             text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
 
-            // Rules
-            var rules = "You play as a pilot trying to maneuver\nthrough the clouds. You can't go back.\nMake it to the destination or else you die!\n\nPress 'Enter' to go back to Main Menu";
-            var text3 = game.add.text(10, 75, rules, {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
+            // story
+            var rules = "For our last game, I wanted to make a game that payed homage to my childhhod, \nthat game turned out to be a book, specifically the iSpy books.\nI loved them as a kid and I wanted to make a game inspired from them.\n 'iSpy the Differences' attempts to take the well crafted themes of the iSpy books and combine them with\n anmation and movement along with the 'spot the difference' mechanic. \nI really enjoyed making this and I hope you enjoy it. \n\n NOTE: This is only like pre-alpha so just enjoy the scenes and music for now ;)";
+            var text3 = game.add.text(75, 125, rules, {font: "20px pristina", fill: '#fff', align: "center"});
             game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+            text3.setShadow(3, 3, 'rgba(0,0,0,0)', 5);
 
-            source = game.add.image(100,500,'source');
-            dest = game.add.image(625,500,'destination');
-
-            plane = game.add.image(100,500,'plane2');
-        
-            //path
-            game.add.image(125,500,'I');
-            game.add.image(225,500,'J');
-            game.add.image(300,500,'S');
-            game.add.image(375,500,'Z');
-            game.add.image(450,500,'L180');
-            game.add.image(525,500,'I');
-
-            // tween plane
-            game.world.bringToTop(plane);
-            game.add.tween(plane).to({ x: '+525'}, 4000, Phaser.Easing.Bounce.Out, true);
-            
-            // chart
-
-            game.add.image(450,100,'I');
-            game.add.image(575,75,'I90');
-
-            var text3 = game.add.text(650, 100, "I Bricks", {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
-            game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            game.add.image(325,250,'J');
-            game.add.image(425,250,'J90');
-            game.add.image(500,250,'J180');
-            game.add.image(600,250,'J270');
-
-            var text3 = game.add.text(650, 275, "J Bricks", {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
-            game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            game.add.image(325,350,'L');
-            game.add.image(425,350,'L90');
-            game.add.image(500,350,'L180');
-            game.add.image(600,350,'L270');
-
-            var text3 = game.add.text(650, 375, "L Bricks", {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
-            game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            game.add.image(25,250,'S');
-            game.add.image(125,250,'S90');
-
-            var text3 = game.add.text(200, 275, "S Bricks", {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
-            game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-
-            game.add.image(25,350,'Z');
-            game.add.image(125,350,'Z90');
-
-            var text3 = game.add.text(200, 375, "Z Bricks", {font: "bold 16px Consolas", fill: '#ffe', align: "center"});
-            game.world.bringToTop(text3);
-            text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+            // back button
+            backButton = game.add.button(315,450, 'back', mainMenu, this, 2, 1, 0);
+            backButton.scale.setTo(.75);
+            backButton.events.onInputOver.add(backover,this,0,backButton);
+            backButton.events.onInputOut.add(backout,this,0,backButton);
             
         },
     

@@ -149,7 +149,7 @@ GameStates.makeHalloween = function(game,shared) {
             witchSound.volume = 0.25; 
             candySound.volume = 0.25;        
 
-            game.add.sprite(0, 0, 'titlePage');
+            game.add.sprite(0, 0, 'orange');
 
             // add enter key
             enterKey3 = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
